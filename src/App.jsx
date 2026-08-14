@@ -33,6 +33,7 @@ import ContentContributorProfile from '@/pages/admin/ContentProfile.jsx'
 import Settings from './pages/admin/Settings.jsx'
 import LessonPlayer from './pages/user/LessonPlayer.jsx'
 import QuizPlayer from './pages/user/QuizPlayer.jsx'
+import OAuthCallback from './pages/auth/OAuthCallback.jsx'
 
 // Forum Components
 import ForumHub from './pages/forum/ForumHub.jsx'
@@ -128,6 +129,9 @@ export default function App() {
         {/* Redirect old auth routes to home (modal handles auth) */}
         <Route path="/auth/login" element={<Navigate to="/" replace />} />
         <Route path="/auth/register" element={<Navigate to="/" replace />} />
+
+        {/* OAuth callback - receives token + user from the backend after Google login */}
+        <Route path="/auth/callback" element={<OAuthCallback />} />
         
         {/* Catch-all redirect */}
         <Route path="*" element={<Navigate to="/" replace />} />

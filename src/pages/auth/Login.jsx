@@ -340,6 +340,19 @@ export default function Login() {
             </div>
           </div>
 
+          {/* OAuth - Continue with Google */}
+          <a
+            href={`${import.meta.env.VITE_API_URL}/auth/google`}
+            className="flex w-full h-12 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white text-base font-semibold text-brand-navy shadow-sm transition-all hover:bg-gray-50"
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google logo"
+              className="h-5 w-5"
+            />
+            Continue with Google
+          </a>
+
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-sm text-brand-gray">
