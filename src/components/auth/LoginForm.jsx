@@ -200,6 +200,28 @@ export default function LoginForm() {
           <div className="w-full border-t border-gray-200" />
         </div>
         <div className="relative flex justify-center text-xs">
+          <span className="px-3 bg-white text-brand-gray">Or continue with</span>
+        </div>
+      </div>
+
+      {/* OAuth - Continue with Google */}
+      <a
+        href={`${import.meta.env.VITE_API_URL}/auth/google`}
+        className="flex w-full h-11 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-brand-navy shadow-sm transition-all hover:bg-gray-50"
+      >
+        <img
+          src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+          alt="Google logo"
+          className="h-5 w-5"
+        />
+        Continue with Google
+      </a>
+
+      <div className="relative my-5">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200" />
+        </div>
+        <div className="relative flex justify-center text-xs">
           <span className="px-3 bg-white text-brand-gray">Don't have an account?</span>
         </div>
       </div>
