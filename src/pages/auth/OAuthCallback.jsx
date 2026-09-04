@@ -20,37 +20,33 @@ export default function OAuthCallback() {
     if (processed.current) return
     processed.current = true
 
-    const token = searchParams.get('token')
-    const userParam = searchParams.get('user')
+    const code = searchParams.get('code')
 
-    if (!token) {
-      setError('OAuth login failed. No token was returned.')
+    if (!code) {
+      setError('OAuth login failed. No authorization code was returned.')
       return
     }
 
-    let user = null
-    try {
-      user = userParam ? JSON.parse(userParam) : null
-    } catch {
-      user = null
+    // SECURITY: Exchange the one-time code for a token via a server-side POST call.
+    // The token is NEVER exposed in the URL.
+    const exchangeCode = async () => {
+      try {
+        const response = await api.post('/auth/exchange-code', { code })
+        const { user, token } = response.data.content
+
+        // Store auth state via the standard login flow
+        sessionStorage.setItem('token', token)
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+        dispatch(setUser({ user, token }))
+
+        navigate(user?.role === 'REFUGEE' ? '/dashboard' : '/admin', { replace: true })
+      } catch (err) {
+        setError('OAuth login failed. Please try again.')
+      }
     }
 
-    // Persist the application JWT (same contract as the regular login flow)
-    sessionStorage.setItem('token', token)
-    if (user?.id) {
-      sessionStorage.setItem('userId', user.id)
-    }
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
-    // Sync Redux state (which also persists to sessionStorage)
-    dispatch(
-      setUser({
-        user,
-        token,
-      })
-    )
-
-    navigate(user?.role === 'REFUGEE' ? '/dashboard' : '/admin', { replace: true })
+    exchangeCode()
   }, [dispatch, navigate, searchParams])
 
   return (
