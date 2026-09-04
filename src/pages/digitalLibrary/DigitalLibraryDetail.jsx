@@ -72,15 +72,39 @@ const DigitalLibraryDetail = () => {
             className="w-full flex-1" 
             title={item.title} 
             referrerPolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin"
+            loading="lazy"
           />
         </div>
       );
     }
 
-    // Generic Fallback
+    // Generic Fallback — SECURITY: sandboxed with minimal permissions
+    // Validate URL is from a trusted origin before rendering
+    const TRUSTED_ORIGINS = ['https://res.cloudinary.com', 'https://docs.google.com'];
+    const isTrustedUrl = TRUSTED_ORIGINS.some(origin => url.startsWith(origin));
+
+    if (!isTrustedUrl) {
+      return (
+        <div className="p-8 bg-yellow-50 rounded-lg text-center text-yellow-700 border border-yellow-200">
+          <p className="font-medium">Cannot preview this file type inline.</p>
+          <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline mt-2 inline-block">
+            Open file in a new tab →
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div className="w-full aspect-video min-h-[600px] rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-gray-50 flex flex-col">
-        <iframe src={url} className="w-full flex-1" title={item.title} />
+        <iframe
+          src={url}
+          className="w-full flex-1"
+          title={item.title}
+          sandbox="allow-scripts"
+          referrerPolicy="no-referrer"
+          loading="lazy"
+        />
       </div>
     );
   };
