@@ -353,6 +353,22 @@ export default function Login() {
             Continue with Google
           </a>
 
+          {/* OAuth - Continue with GitHub */}
+          <a
+            href={`${import.meta.env.VITE_API_URL}/auth/github`}
+            className="flex w-full h-12 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white text-base font-semibold text-brand-navy shadow-sm transition-all hover:bg-gray-50"
+          >
+            <svg
+              className="w-5 h-5 text-gray-800"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.303 7.5 11.258.086.115.086.25 0 .365-7.793 2.14-11.25-7.5-11.25-7.5C5.226 17.533 4 13.314 4 10 4 5.373 10.373 0 12 0zM12 2C6.48 2 2 6.482 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 6c-4.411 0-8 3.589-8 8 0 .794.213 1.534.588 2.13 2.177-1.534 3.5-3.13 4.375-5.125-.498.608-.997 1.25-.997 2.068 0 1.505.503 2.92.588 4.04-.063-.066-.086-.12-.086-.18 0-.132.025-.259.063-.385-2.136 1.087-3.227 1.863-3.227 3.135 0 1.424.617 2.56 1.237 3.475.6.912.6 1.865.6 2.875t.6 1.958c0 .806-.213 1.533-.588 2.13-2.118.6-3.5 2.13-4.375 3.135-1.03 1.808-1.535 3.137-1.535 5.125 0 8-3.589 8-8 0-.785-.21-1.533-.588-2.13A11.92 11.92 0 0 1 12 18c-4.41 0-8-3.589-8-8 0-.794.213-1.534.588-2.13A11.92 11.92 0 0 1 12 18c-4.41 0-8-3.589-8-8 0-.794.213-1.534.588-2.13"
+              />
+            </svg>
+            Continue with GitHub
+          </a>
+
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-sm text-brand-gray">
