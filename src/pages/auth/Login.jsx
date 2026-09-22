@@ -76,11 +76,11 @@ export default function Login() {
 
       // Store remember me preference
       if (data.rememberMe) {
+      // SECURITY: Only store a boolean preference, never the raw email. 
+      // Email pre-fill is not worth the PII exposure risk on shared devices.
         localStorage.setItem('rememberMe', 'true')
-        localStorage.setItem('lastEmail', data.email)
       } else {
         localStorage.removeItem('rememberMe')
-        localStorage.removeItem('lastEmail')
       }
 
       // Redirect to admin dashboard

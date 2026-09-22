@@ -157,6 +157,7 @@ const authSlice = createSlice({
       state.error = null
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('auth')
+      localStorage.removeItem('rememberMe')
       delete api.defaults.headers.common['Authorization']
     },
     // Restore session on app load
