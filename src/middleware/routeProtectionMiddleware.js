@@ -1,6 +1,10 @@
 /**
- * Route Protection Helpers - Checks authentication before accessing protected routes
- * Used with React Router to protect admin and user routes.
+ * Route Protection Helpers - sessionStorage-based role checks.
+ *
+ * DEPRECATED for route guarding: use src/components/auth/ProtectedRoute.jsx
+ * (ProtectedRoute / RoleRoute with Redux state) in App.jsx instead.
+ * Kept only for non-routing helpers. Route-level access control must never
+ * rely on raw sessionStorage alone — see A01 Broken Access Control report.
  *
  * Roles are canonicalized to the backend contract in
  * SE4030_AF_Backend/src/utils/constants.js:

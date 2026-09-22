@@ -34,6 +34,7 @@ import Settings from './pages/admin/Settings.jsx'
 import LessonPlayer from './pages/user/LessonPlayer.jsx'
 import QuizPlayer from './pages/user/QuizPlayer.jsx'
 import OAuthCallback from './pages/auth/OAuthCallback.jsx'
+import { ProtectedRoute, RoleRoute } from './components/auth/ProtectedRoute.jsx'
 
 // Forum Components
 import ForumHub from './pages/forum/ForumHub.jsx'
@@ -70,7 +71,8 @@ export default function App() {
           <Route path="/get-involved" element={<GetInvolved />} />
         </Route>
 
-        {/* REFUGEE ROUTES - Dashboard */}
+        {/* REFUGEE ROUTES - Role-protected dashboard (defense-in-depth; API auth enforced by backend) */}
+        <Route element={<RoleRoute allowedRoles={['REFUGEE']} />}>
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="overview" element={<Dashboard />} />
@@ -93,8 +95,10 @@ export default function App() {
           <Route path="digital-library/:id" element={<DigitalLibraryDetail />} />     
           <Route path="settings" element={<div className="p-6">Settings Page</div>} />
         </Route>
+        </Route>
 
-        {/* CONTENT CONTRIBUTOR ROUTES - Admin */}
+        {/* CONTENT CONTRIBUTOR ROUTES - Role-protected admin */}
+        <Route element={<RoleRoute allowedRoles={['CONTENT_CONTRIBUTOR', 'ADMIN']} />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<AdminDashboard />} />
@@ -123,6 +127,7 @@ export default function App() {
           <Route path="forums/create" element={<CreateForumPage />} />
           <Route path="forums/:forumId/edit" element={<EditForumForm />} />
           <Route path="forums/:forumId/members" element={<ManageForumMembers />} />
+        </Route>
         </Route>
 
         {/* REDIRECTS - Legacy & Cleanup */}
