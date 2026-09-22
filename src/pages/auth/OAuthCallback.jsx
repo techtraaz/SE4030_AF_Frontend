@@ -8,7 +8,7 @@ import api from '@/services/axios'
 /**
  * OAuthCallback
  * Handles the redirect back from the backend after a successful
- * OAuth (Google or GitHub via Auth0) Authorization Code flow.
+ * OAuth (Google, GitHub or Facebook via Auth0) Authorization Code flow.
  * Backend redirects to /auth/callback?token=<appJWT>&user=<json>.
  */
 export default function OAuthCallback() {
