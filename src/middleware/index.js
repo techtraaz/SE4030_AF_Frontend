@@ -8,7 +8,10 @@ export { default as logger } from './logger.js'
 export {
   isAuthenticated,
   getUserRole,
+  hasRole,
   isAdmin,
+  isContributor,
+  isRefugee,
   isUser,
 } from './routeProtectionMiddleware.js'
 export { default as toastService } from '../services/toastService.js'

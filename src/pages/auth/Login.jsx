@@ -340,6 +340,8 @@ export default function Login() {
             </div>
           </div>
 
+          {/* OAuth - Google / GitHub / Facebook (same backend Auth0 flow) */}
+          <div className="space-y-3">
           {/* OAuth - Continue with Google */}
           <a
             href={`${import.meta.env.VITE_API_URL}/auth/google`}
@@ -352,6 +354,29 @@ export default function Login() {
             />
             Continue with Google
           </a>
+
+          {/* OAuth - Continue with GitHub */}
+          <a
+            href={`${import.meta.env.VITE_API_URL}/auth/github`}
+            className="flex w-full h-12 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white text-base font-semibold text-brand-navy shadow-sm transition-all hover:bg-gray-50"
+          >
+            <svg className="h-5 w-5 text-gray-800" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.52 11.52 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+            </svg>
+            Continue with GitHub
+          </a>
+
+          {/* OAuth - Continue with Facebook */}
+          <a
+            href={`${import.meta.env.VITE_API_URL}/auth/facebook`}
+            className="flex w-full h-12 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white text-base font-semibold text-brand-navy shadow-sm transition-all hover:bg-gray-50"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+              <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.971H15.83c-1.491 0-1.956.93-1.956 1.886v2.264h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+            </svg>
+            Continue with Facebook
+          </a>
+          </div>
 
           {/* Sign Up Link */}
           <div className="text-center">
