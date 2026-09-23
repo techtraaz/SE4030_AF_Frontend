@@ -21,12 +21,7 @@ export const store = configureStore({
     answer: answerReducer,
     vote: voteReducer,
     digitalLibrary: digitalLibraryReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(apiMiddleware)
-      .concat(authMiddleware)
-      .concat(logger),
+  }   
 })
 
 export default store
