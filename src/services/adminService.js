@@ -12,13 +12,6 @@ const adminService = {
   async getPendingContributors() {
     const response = await api.get('/admin/contributors/pending')
     const users = response.data?.content || []
-    console.log('DEBUG Pending contributors response:', response.data)
-    if (users.length > 0) {
-      console.log('DEBUG First user full object:', JSON.stringify(users[0], null, 2))
-      console.log('DEBUG First user firstName:', users[0].firstName)
-      console.log('DEBUG First user lastName:', users[0].lastName)
-      console.log('DEBUG First user email:', users[0].email)
-    }
     return users
   },
 

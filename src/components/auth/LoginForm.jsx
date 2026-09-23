@@ -47,16 +47,15 @@ export default function LoginForm() {
   const rememberMe = watch('rememberMe')
 
   const onSubmit = async (data) => {
-    console.log('Form submitted with data:', data)
     try {
       const result = await dispatch(loginUser({ email: data.email, password: data.password })).unwrap()
 
       if (data.rememberMe) {
+      // SECURITY: Only store a boolean preference, never the raw email.
+      // Email pre-fill is not worth the PII exposure risk on shared devices.
         localStorage.setItem('rememberMe', 'true')
-        localStorage.setItem('lastEmail', data.email)
       } else {
         localStorage.removeItem('rememberMe')
-        localStorage.removeItem('lastEmail')
       }
 
       // Reset form and close modal
