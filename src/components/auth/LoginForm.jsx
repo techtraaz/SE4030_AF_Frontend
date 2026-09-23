@@ -47,7 +47,6 @@ export default function LoginForm() {
   const rememberMe = watch('rememberMe')
 
   const onSubmit = async (data) => {
-    console.log('Form submitted with data:', data)
     try {
       const result = await dispatch(loginUser({ email: data.email, password: data.password })).unwrap()
 
