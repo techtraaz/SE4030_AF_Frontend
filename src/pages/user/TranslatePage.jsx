@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-const BASE_URL = import.meta.env.VITE_API_URL;
+import api from "@/services/axios";
 
 const LANGUAGES = [
     { code: "en", label: "English" },
@@ -24,22 +23,18 @@ export default function TranslatePage() {
 
         setLoading(true);
         try {
-            const res = await fetch(`${BASE_URL}/translate`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    text,
-                    source,
-                    target,
-                }),
+            // Use the centralized axios instance which auto-attaches the
+            // Authorization header and leverages global error handling.
+            // POST /api/translate requires authenticate (backend).
+            const response = await api.post("/translate", {
+                text,
+                source,
+                target,
             });
 
-            const data = await res.json();
-            setTranslated(data.translated || "");
-        } catch (err) {
-            console.error(err);
+            setTranslated(response.data?.translated || "");
+        } catch {
+            // Error toast + 401 redirect handled by the axios response interceptor.
             setTranslated("Error translating text");
         } finally {
             setLoading(false);

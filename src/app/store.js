@@ -23,10 +23,7 @@ export const store = configureStore({
     digitalLibrary: digitalLibraryReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(apiMiddleware)
-      .concat(authMiddleware)
-      .concat(logger),
+    getDefaultMiddleware().concat(apiMiddleware, authMiddleware, logger),
 })
 
 export default store
